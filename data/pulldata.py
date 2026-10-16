@@ -5,9 +5,10 @@ import os
 if not os.path.exists('cache'):
     os.makedirs('cache')
 fastf1.Cache.enable_cache('cache')
+TARGET_YEAR = 2025
 
-print("pulling Session Singapore 2025...")
-session = fastf1.get_session(2025, 'Singapore', 'Q')
+print(f"pulling Session Singapore {TARGET_YEAR}")
+session = fastf1.get_session(TARGET_YEAR    , 'Singapore', 'Q')
 session.load()
     
 print("pulling 19 corners")
@@ -19,7 +20,7 @@ corners_df = pd.DataFrame({
 corners_df.to_csv('singapore_2025_corners.csv', index=False)
 print("save singapore_2025_corners.csv success")
 
-top_7_drivers = ['ANT', 'RUS', 'HAM', 'VER', 'LEC', 'NOR', 'PIA']
+top_7_drivers = session.results['Abbreviation'].head(7).tolist()
 print(f"\ndrivers: {top_7_drivers}")
 
 all_telemetry_data = pd.DataFrame()
@@ -45,5 +46,5 @@ for driver in top_7_drivers:
 print("\n All done")
 print(f"vectors: {len(all_telemetry_data)}")
 
-all_telemetry_data.to_csv('singapore_q_top7_2025_data.csv', index=False)
-print("-> save singapore_q_top7_2025_data.csv success")
+all_telemetry_data.to_csv(f'singapore_q_top7_{TARGET_YEAR}_data.csv', index=False)
+print(f"save singapore_q_top7_{TARGET_YEAR}_data.csv success")
