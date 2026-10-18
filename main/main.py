@@ -18,8 +18,8 @@ YEAR = args[0] if args else '2026'
 SKIP_PULL = '--skip-pull' in sys.argv
 
 WORK.mkdir(exist_ok=True)
-if not (WORK / 'cache').exists():
-    (WORK / 'cache').symlink_to(ROOT / 'cache', target_is_directory=True)
+if not (WORK / 'cache').exists() and (ROOT / 'cache').exists():
+    shutil.copytree(ROOT / 'cache', WORK / 'cache')   # reuse already-downloaded data (no symlink: breaks git on /mnt)
 env = {**os.environ, 'F1_YEAR': YEAR}
 
 
