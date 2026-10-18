@@ -20,7 +20,7 @@ corner_scores = np.array([
     11,  # Corner 16 (Sector 3 chicane entry)
     30,  # Corner 17 (Critical mechanical traction exit)
     6,   # Corner 18 (Penultimate positioning corner)
-    22   # Corner 19 (Final corner to Pit Straight)
+    20   # Corner 19 (Final corner to Pit Straight)
 ], dtype=float)
 
 A_matrix = np.outer(corner_scores, 1.0 / corner_scores)
