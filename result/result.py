@@ -1,7 +1,8 @@
 import numpy as np
+import os
 import pandas as pd
 
-TARGET_YEAR = 2025
+TARGET_YEAR = int(os.environ.get('F1_YEAR', 2026))
 
 p_file = f'performance_matrix_P_{TARGET_YEAR}.csv'
 P_df = pd.read_csv(p_file, index_col=0)
@@ -46,9 +47,9 @@ final_results = rank_df.sort_values(by='Win_Prob_With_SC (%)', ascending=False).
 final_results['Final_Rank'] = final_results.index + 1
 
 cols_to_show = ['Final_Rank', 'Driver', 'Base_Score', 'Post_SC_Score', 'Win_Prob_No_SC (%)', 'Win_Prob_With_SC (%)']
-print(f"\n=== result winrate Singapore GP {TARGET_YEAR+1} ===")
+print(f"\n=== result winrate Singapore GP {TARGET_YEAR} ===")
 print(final_results[cols_to_show].to_string(index=False))
 
-out_file = f'final_race_prediction_{TARGET_YEAR+1}.csv'
+out_file = f'final_race_prediction_{TARGET_YEAR}.csv'
 final_results[cols_to_show].to_csv(out_file, index=False)
 print(f"\n-> save {out_file}success")

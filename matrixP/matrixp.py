@@ -1,7 +1,8 @@
 import pandas as pd
 import numpy as np
+import os
 
-TARGET_YEAR = 2025
+TARGET_YEAR = int(os.environ.get('F1_YEAR', 2026))
 
 data_file = f'singapore_q_top7_{TARGET_YEAR}_data.csv'
 corners_file = f'singapore_{TARGET_YEAR}_corners.csv'

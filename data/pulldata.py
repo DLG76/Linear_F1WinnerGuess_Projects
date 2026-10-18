@@ -5,7 +5,7 @@ import os
 if not os.path.exists('cache'):
     os.makedirs('cache')
 fastf1.Cache.enable_cache('cache')
-TARGET_YEAR = 2025
+TARGET_YEAR = int(os.environ.get('F1_YEAR', 2026))
 
 print(f"pulling Session Singapore {TARGET_YEAR}")
 session = fastf1.get_session(TARGET_YEAR    , 'Singapore', 'Q')
@@ -17,8 +17,8 @@ corners_df = pd.DataFrame({
     'Corner_Number': circuit_info.corners['Number'],
     'Distance': circuit_info.corners['Distance']
 })
-corners_df.to_csv('singapore_2025_corners.csv', index=False)
-print("save singapore_2025_corners.csv success")
+corners_df.to_csv(f'singapore_{TARGET_YEAR}_corners.csv', index=False)
+print("save corners csv success")
 
 top_7_drivers = session.results['Abbreviation'].head(7).tolist()
 print(f"\ndrivers: {top_7_drivers}")
