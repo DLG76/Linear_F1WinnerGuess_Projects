@@ -1,0 +1,15 @@
+cache/fastf1_http_cache.sqlite
+cache/*.sqlite-journal
+
+output/
+
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
