@@ -17,7 +17,10 @@ LEGACY_LAST_YEAR = 2022
 LEGACY_CORNERS = 23
 REFERENCE_YEAR = 2018
 
-
+if TARGET_YEAR == 2021 or TARGET_YEAR == 2020:
+    exit()
+else:
+    pass
 def lap_length(telemetry_df, n=7):
    
     first = telemetry_df['Driver'].unique()[:n]
